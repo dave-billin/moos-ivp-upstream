@@ -13,6 +13,7 @@ ENDIF (${WIN32})
 # FINDING MOOS' HEADERS AND LIBRARIES...
 #===============================================================================
 
+
 # moos - http://www.robots.ox.ac.uk/~mobile/MOOS/wiki/pmwiki.php
 find_package(MOOS 10.0)
 
@@ -45,6 +46,36 @@ message("+++++++++++++++++++++++++++++++++++++++++")
 message("MOOSGeodesy_INCLUDE_DIRS:" ${MOOSGeodesy_INCLUDE_DIRS})
 message("MOOSGeodesy_LIBRARY_PATH:" ${MOOSGeodesy_LIBRARY_PATH})
 message("+++++++++++++++++++++++++++++++++++++++++")
+
+
+#===============================================================================
+# FINDING libproj4 HEADERS AND LIBRARIES...  
+#===============================================================================
+list( APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake-modules" )
+
+if ( NOT DEFINED PROJ4_INCLUDE_SEARCH_PATHS )
+   get_filename_component( PROJ4_INCLUDE_SEARCH_PATHS
+                           "${CMAKE_CURRENT_SOURCE_DIR}/../../MOOS/proj-4.8.0/src"
+                           REALPATH
+                         )
+endif()
+
+if ( NOT DEFINED PROJ4_LIBRARY_SEARCH_PATHS )
+   get_filename_component( PROJ4_LIBRARY_SEARCH_PATHS
+                           "${CMAKE_CURRENT_SOURCE_DIR}/../../lib"
+                           REALPATH
+                         )
+endif()
+
+find_package(Proj4 REQUIRED)
+
+include_directories(${PROJ4_INCLUDE_DIRS})
+add_library( proj SHARED IMPORTED )
+set_target_properties( proj
+                       PROPERTIES IMPORTED_LOCATION
+                       ${PROJ4_LIBRARIES}
+                     )
+
 
 #===============================================================================
 # BUILDING IvP...
