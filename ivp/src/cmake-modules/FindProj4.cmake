@@ -59,9 +59,6 @@
 #==============================================================================
 include(FindPackageHandleStandardArgs)
 
-message( WARNING "PROJ4_INCLUDE_SEARCH_PATHS = ${PROJ4_INCLUDE_SEARCH_PATHS}" )
-message( WARNING "PROJ4_LIBRARY_SEARCH_PATHS = ${PROJ4_LIBRARY_SEARCH_PATHS}" )
-
 #------------------------------
 # Find proj4 libraries
 #------------------------------
@@ -74,9 +71,6 @@ find_path( PROJ4_INCLUDE_DIR
            NAMES proj_api.h
            HINTS ${PROJ4_INCLUDE_SEARCH_PATHS}
          )
-   
-message( STATUS "PROJ4_LIBRARY = ${PROJ4_LIBRARY}" )
-message( STATUS "PROJ4_INCLUDE_DIR = ${PROJ4_INCLUDE_DIR}" )
    
 # Handle the QUIETLY and REQUIRED arguments and set PROJ4_FOUND to TRUE
 # if all elements were found

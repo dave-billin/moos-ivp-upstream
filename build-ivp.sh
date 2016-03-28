@@ -157,8 +157,6 @@ else
          "${_ivp_src_dir}" \
             >/dev/null
  
-#         -DPROJ4_INCLUDE_SEARCH_PATHS="${_script_dir}/MOOS/proj-4.8.0" \
-#         -DPROJ4_LIBRARY_SEARCH_PATHS="${_lib_dir}" \
    echo "Running 'make ${CMD_ARGS}'"
    make -j12 ${CMD_ARGS}
    )
