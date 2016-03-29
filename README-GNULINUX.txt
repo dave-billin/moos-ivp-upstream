@@ -1,6 +1,7 @@
 README-LINUX.txt
-Last updated: 19 June 2012
+Last updated: 28 Mar 2016
 Maintainer: Mike Benjamin (issues@moos-ivp.org)
+Contributor: Dave Billin
 
 OVERVIEW
 ========
@@ -16,11 +17,10 @@ UBUNTU PACKAGES
 Packages you probably already have installed:
 
   g++        - GNU C++ compiler
-  subversion - Advanced version control system
+  git        - Distributed version control system
   cmake      - cross-platform, open-source make system
-  xterm      - X terminal application 
 
-Additional packages:
+Additional packages (required for GUI tools):
 
   libfltk1.3-dev  - Fast Light Toolkit - development files
   freeglut3-dev   - OpenGL Utility Toolkit development files
@@ -32,7 +32,7 @@ Additional packages:
 
 To do it all, cut and paste this:
 
-  sudo apt-get install g++ subversion xterm cmake libfltk1.3-dev freeglut3-dev libpng12-dev libjpeg-dev libxft-dev libxinerama-dev libtiff4-dev
+  sudo apt-get install g++ git cmake libfltk1.3-dev freeglut3-dev libpng12-dev libjpeg-dev libxft-dev libxinerama-dev libtiff4-dev
 
 
 NOTE: As of this date we are no longer including FLTK as part of the 
@@ -49,16 +49,23 @@ BUILDING MOOS-IvP
 
 ENVIRONMENT VARIABLES
 =====================
-When you build the MOOS-IvP software, the executable programs are placed
-in the "moos-ivp/bin" subdirectory of the source code tree.
+When you build the MOOS-IvP software, executable programs are written
+to the "bin" subdirectory of the source code tree.  Shared and static
+libraries are written to the "lib" subdirectory.
 
-We recommend that you put the absolute path to this directory into
-your PATH environment variable.  This is especially important because the
-"pAntler" program, which can launch other MOOS/IvP programs, relies on the
-PATH variable to find those programs.
+To simplify running MOOS-IvP executables built by this project from
+the command line or from the pAntler application without installing
+them, it is recommended to add the "bin" directory to the user's
+executable search path and the "lib" directory to the library search
+path.  This can be done by appending the absolute path of the "bin"
+directory to the the PATH environment variable and appending the 
+path of the "lib" directory to the LD_LIBRARY_PATH variable:
 
-We normally just add lines to our ~/.bashrc or ~/.cshrc files to always append
-these two directories to the PATH environment variable.
+Example:
+   cd <moos-ivp directory>
+   PATH="${PATH}:$(pwd)/bin"
+   LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:$(pwd)/lib"
 
- 
+A good place to do this is at the end of the ~/.bashrc or ~/.cshrc 
+file (whichever is appropriate to the command shell being used).
  
