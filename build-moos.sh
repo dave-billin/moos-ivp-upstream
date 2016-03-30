@@ -264,7 +264,7 @@ fi
 # Part #5:  BUILD MOOS GEODESY
 #===================================================================
 moos_geodesy_dir="${_script_dir}/MOOS/MOOSGeodesy"
-moos_geodesy_build_dir="${_build_dir}MOOSGeodesy"
+moos_geodesy_build_dir="${_build_dir}/MOOSGeodesy"
 echo -e "\n\n
 ${bar}
 ***  Building MOOSGeodesy  ***

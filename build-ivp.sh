@@ -131,20 +131,21 @@ Libraries:                ${_lib_dir}
 Programs:                 ${_bin_dir}
 "
 
-# Create build and output directories
-mkdir -p "${_build_dir}"
-mkdir -p "${_lib_dir}"
-mkdir -p "${_bin_dir}"
 
 
 # Implement purge
 if [ "${purge_requested}" = 'yes' ]
 then
     echo "Purging build artifacts in '${_build_dir}'"
-    (cd ${_build_dir} && make clean) || true
-    rm -rf ${_build_dir}
+    [ -d "${_build_dir}" ] && (cd "${_build_dir}" && make clean || true)
+    rm -rf "${_build_dir}"
     exit 0
 else
+   # Create build and output directories
+   mkdir -p "${_build_dir}"
+   mkdir -p "${_lib_dir}"
+   mkdir -p "${_bin_dir}"
+
    (
    cd ${_build_dir}
    echo "Configuring CMake..."
